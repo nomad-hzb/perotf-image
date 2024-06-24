@@ -1,2 +1,4 @@
-nomad-measurements
 nomad-material-processing
+git+https://github.com/nomad-hzb/nomad-baseclasses.git
+git+https://github.com/nomad-hzb/nomad-perotf.git
+git+https://github.com/nomad-hzb/nomad-perotf-parser.git
