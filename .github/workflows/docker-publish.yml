@@ -54,8 +54,6 @@ jobs:
 
   # Job 2: Build and Push Docker Image
   docker-publish:
-    permissions:
-        packages: write
     name: Build Docker Image
     runs-on: ubuntu-latest
     needs: update-lockfile
