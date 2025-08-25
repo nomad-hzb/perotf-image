@@ -6,12 +6,45 @@ oasis:
   is_oasis: true
   uses_central_user_management: true
 
+#north:
+#  jupyterhub_crypt_key: "978bfb2e13a8448a253c629d8dd84ff89587f30e635b753153960930cad9d36d"
+#  tools:
+#    options:
+#      jupyter:
+#        image: ghcr.io/fairmat-nfdi/nomad-distro-template/jupyter:main
+
 north:
-  jupyterhub_crypt_key: "978bfb2e13a8448a253c629d8dd84ff89587f30e635b753153960930cad9d36d"
+  jupyterhub_crypt_key: ''
+  enabled: true
   tools:
+    include:
+      - voila
+      - jupyter2
     options:
-      jupyter:
-        image: ghcr.io/fairmat-nfdi/nomad-distro-template/jupyter:main
+      jupyter2:
+        short_description: A jupyter webapp container with voila opens notebook
+        description: A jupyter hub webapp container with voila installed.
+        image: ghcr.io/nomad-hzb/perotf-image/jupyter:main
+        path_prefix: lab/tree
+        with_path: true
+        mount_path: /home/jovyan
+        file_extensions:
+          - ipynb
+        maintainer:
+          - name: Michael Götte
+            email: michael.goette@helmholtz-berlin.de
+      voila:
+        short_description: A jupyter webapp container with voila opens voila
+        description: A jupyter hub webapp container with voila installed.
+        image: ghcr.io/nomad-hzb/perotf-image/jupyter:main
+        path_prefix: voila/render
+        with_path: true
+        mount_path: /home/jovyan
+        file_extensions:
+          - ipynb
+        maintainer:
+          - name: Michael Götte
+            email: michael.goette@helmholtz-berlin.de
 
 meta:
   deployment: "oasis"
