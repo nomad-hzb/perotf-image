@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -3400,7 +3400,7 @@ wheels = [
 [[package]]
 name = "nomad-perotf"
 version = "1.0.0"
-source = { git = "https://github.com/nomad-hzb/nomad-perotf.git#136cb70702782a52c22fd17ab50a737bb0ab17cc" }
+source = { git = "https://github.com/nomad-hzb/nomad-perotf.git#2a3179140d6efe84264f0c89218965deff67d2de" }
 dependencies = [
     { name = "nomad-baseclasses" },
     { name = "nomad-lab" },
