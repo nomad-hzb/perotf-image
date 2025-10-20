@@ -3400,7 +3400,7 @@ wheels = [
 [[package]]
 name = "nomad-perotf"
 version = "1.0.0"
-source = { git = "https://github.com/nomad-hzb/nomad-perotf.git#74e0801770044eccc88829e0d6bf94d7ea70712a" }
+source = { git = "https://github.com/nomad-hzb/nomad-perotf.git#136cb70702782a52c22fd17ab50a737bb0ab17cc" }
 dependencies = [
     { name = "nomad-baseclasses" },
     { name = "nomad-lab" },
