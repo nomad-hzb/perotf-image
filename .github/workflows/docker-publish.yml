@@ -172,8 +172,8 @@ jobs:
           echo "${{ matrix.service }}_IMAGE=$FIRST_TAG" >> $GITHUB_ENV
 
     outputs:
-      app_image: ${{ env.app_IMAGE }}
-      jupyter_image: ${{ env.jupyter_IMAGE }}
+      app_image: echo "${{ env.app_IMAGE }}_test"
+      jupyter_image: echo "${{ env.jupyter_IMAGE }}_test"
 
   # Job 4: Run example upload tests and entrypoint tests
   run_tests:
