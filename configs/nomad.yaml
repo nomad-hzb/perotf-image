@@ -6,38 +6,12 @@ oasis:
   is_oasis: true
   uses_central_user_management: true
 
-north:
-  jupyterhub_crypt_key: ''
-  enabled: true
-  tools:
-    include:
-      - voila
-      - jupyter2
+plugins:
+  entry_points:
     options:
-      jupyter2:
-        short_description: A jupyter webapp container with voila opens notebook
-        description: A jupyter hub webapp container with voila installed.
-        image: ghcr.io/nomad-hzb/perotf-image/jupyter:main
-        path_prefix: lab/tree
-        with_path: true
-        mount_path: /home/jovyan
-        file_extensions:
-          - ipynb
-        maintainer:
-          - name: Michael Götte
-            email: michael.goette@helmholtz-berlin.de
-      voila:
-        short_description: A jupyter webapp container with voila opens voila
-        description: A jupyter hub webapp container with voila installed.
-        image: ghcr.io/nomad-hzb/perotf-image/jupyter:main
-        path_prefix: voila/render
-        with_path: true
-        mount_path: /home/jovyan
-        file_extensions:
-          - ipynb
-        maintainer:
-          - name: Michael Götte
-            email: michael.goette@helmholtz-berlin.de
+      nomad_north_jupyter.north_tools.jupyter_north_tool:north_tool_entry_point:
+        north_tool:
+          image: ghcr.io/fairmat-nfdi/nomad-north-jupyter:latest
 
 meta:
   deployment: "oasis"
@@ -45,7 +19,10 @@ meta:
   maintainer_email: "me@my-oasis.org"
 
 logstash:
-  enable: false
+  enabled: false
+
+temporal:
+  enabled: true
 
 mongo:
   db_name: nomad_oasis_v1
