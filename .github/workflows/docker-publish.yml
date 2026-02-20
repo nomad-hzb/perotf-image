@@ -147,7 +147,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: echo "${{ env.REGISTRY }}_test/${{ github.repository }}${{ matrix.image_suffix }}"
+          images: ${{ env.REGISTRY }}_test/${{ github.repository }}${{ matrix.image_suffix }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
