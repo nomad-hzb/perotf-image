@@ -18,7 +18,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 dependencies = [
-    "nomad-lab[parsing, infrastructure] == 1.4.0",
+    "nomad-lab[parsing, infrastructure] == 1.4.1",
     "httpx==0.27.2",
 ]
 
@@ -42,7 +42,7 @@ jupyter = [
 #'baybe',
 'pyvis'
 ]
-dev = ["nomad-lab[parsing, infrastructure, dev]==1.4.0"]
+dev = ["nomad-lab[parsing, infrastructure, dev]==1.4.1"]
 
 [tool.uv]
 extra-index-url = [
