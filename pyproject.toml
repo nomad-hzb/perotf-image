@@ -1,6 +1,9 @@
 [build-system]
-requires = ["setuptools>=64"]
+requires = ["setuptools>=64", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+fallback_version = "0.0"
 
 [project]
 classifiers = [
@@ -42,14 +45,18 @@ jupyter = [
 #'baybe',
 'pyvis'
 ]
+gpu-action = []
+cpu-action = []
+
 dev = ["nomad-lab[parsing, infrastructure, dev]==1.4.1"]
 
 [tool.uv]
 extra-index-url = [
   "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple",
 ]
-constraint-dependencies = ["hyperspy>=1.7.6"]
-prerelease = "disallow"
+constraint-dependencies = ["hyperspy>=1.7.6","flatdict>=4.1.0"]
+prerelease = "explicit"
+
 
 [tool.setuptools.packages.find]
 exclude = ["gui*", "docs*", "config*"]
