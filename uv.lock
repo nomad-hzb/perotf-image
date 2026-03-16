@@ -1292,7 +1292,7 @@ wheels = [
 
 [[package]]
 name = "h5grove"
-version = "3.0.0"
+version = "2.3.0"
 source = { registry = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple" }
 dependencies = [
     { name = "h5py" },
@@ -1301,9 +1301,9 @@ dependencies = [
     { name = "tifffile" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ae/a0/edbd9a6648bc535223b4da893c6f4a5d111ca4c77ac58f195616f4555462/h5grove-3.0.0.tar.gz", hash = "sha256:c29e4068e8c292357e9b8b595c369921bba496aae1de2db7c04edd2e4bcde43b", size = 14418 }
+sdist = { url = "https://files.pythonhosted.org/packages/7f/9f/1a609b9157e27302fc3038acc033b1a329805015b477d74e29416d38e2f4/h5grove-2.3.0.tar.gz", hash = "sha256:8d438f2a4616d64b176e6ff352d23b39027b9f1ab2c9169fcfd6f5f1caca8728", size = 16725 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0e/33/35f6e602e054c2a8945bc5c0dcec5a50f763f555a35d4eff43b022ed0b64/h5grove-3.0.0-py3-none-any.whl", hash = "sha256:853c5eb6b981dee3723cb979de12e439a12641532ca00a8a6d2e6fdd79027956", size = 17191 },
+    { url = "https://files.pythonhosted.org/packages/8e/33/68a9a534f0c296c509dade2a5113773702fb1ecd1a89905b341ee080acf6/h5grove-2.3.0-py3-none-any.whl", hash = "sha256:7000a5aa64a6d77997ad18296552ec4def62d4e24aa05219b59c535233017fdf", size = 16628 },
 ]
 
 [package.optional-dependencies]
