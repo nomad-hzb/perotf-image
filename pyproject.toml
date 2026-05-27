@@ -9,9 +9,6 @@ fallback_version = "0.0"
 classifiers = [
   "Intended Audience :: Developers",
   "Operating System :: OS Independent",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
 ]
 name = "perotf-image"
@@ -21,8 +18,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { file = "LICENSE" }
 dependencies = [
-    "nomad-lab[parsing, infrastructure] == 1.4.1",
-    "httpx==0.27.2",
+    "nomad-lab[parsing, infrastructure] == 1.4.2",
 ]
 
 
@@ -44,18 +40,21 @@ jupyter = [
 'ipydatagrid',
 'jupyter-flex',
 #'baybe',
-'pyvis'
+'pyvis',
+'ipython<9',
+'ipykernel<7',
+'jupyterlab>4.0'
 ]
 gpu-action = []
 cpu-action = []
 
-dev = ["nomad-lab[parsing, infrastructure, dev]==1.4.1"]
+dev = ["nomad-lab[parsing, infrastructure, dev]==1.4.2"]
 
 [tool.uv]
 extra-index-url = [
   "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple",
 ]
-constraint-dependencies = ["hyperspy>=1.7.6","flatdict>=4.1.0"]
+constraint-dependencies = ["hyperspy>=1.7.6", "pyzmq==27.0.2"]
 prerelease = "explicit"
 
 [tool.setuptools.packages.find]
