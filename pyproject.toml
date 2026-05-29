@@ -42,7 +42,7 @@ jupyter = [
 #'baybe',
 'pyvis',
 'ipython<9',
-'ipykernel<7',
+'ipykernel<8',
 'jupyterlab>4.0'
 ]
 gpu-action = []
