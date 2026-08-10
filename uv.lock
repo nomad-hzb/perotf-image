@@ -3203,7 +3203,7 @@ wheels = [
 [[package]]
 name = "nomad-baseclasses"
 version = "1.0.1"
-source = { git = "https://github.com/nomad-hzb/nomad-baseclasses.git#389823680ecdc000284c684fd31262d10cd48615" }
+source = { git = "https://github.com/nomad-hzb/nomad-baseclasses.git#18f7bfbd4b04d11875657f0ceba9275b8ff424be" }
 dependencies = [
     { name = "chardet" },
     { name = "hdf5plugin" },
@@ -3339,7 +3339,7 @@ wheels = [
 [[package]]
 name = "nomad-perotf"
 version = "1.0.0"
-source = { git = "https://github.com/nomad-hzb/nomad-perotf.git#14814b6aed77b71ee04d3626bdf12f72906bd88a" }
+source = { git = "https://github.com/nomad-hzb/nomad-perotf.git#df8ab8d7da1ae452864d0e992e5207cb1b0a6c14" }
 dependencies = [
     { name = "nomad-baseclasses" },
     { name = "nomad-lab" },
