@@ -41,7 +41,7 @@ jupyter = [
 'jupyter-flex',
 #'baybe',
 'pyvis',
-'ipython<9',
+'ipython<10',
 'ipykernel<7',
 'jupyterlab>4.0'
 ]
