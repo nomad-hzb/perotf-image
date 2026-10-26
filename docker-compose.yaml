@@ -1,4 +1,4 @@
-# Deployment of the KIT NOMAD Oasis (http://elnserver).
+# Deployment of the KIT NOMAD Oasis (http://elnserver.lti.kit.edu).
 #
 # Secrets are not part of this repository. They live next to this file on the server:
 #   .env        NOMAD_SERVICES_API_SECRET, NOMAD_NORTH_JUPYTERHUB_CRYPT_KEY,
@@ -194,7 +194,7 @@ services:
       NOMAD_API_URL: "http://app:8000/backend/api/v1"
       BASE_URL: "/backend/north/"
       # must match the address users open in the browser
-      OAUTH_CALLBACK_URL: "http://elnserver/backend/north/hub/oauth_callback"
+      OAUTH_CALLBACK_URL: "http://elnserver.lti.kit.edu/backend/north/hub/oauth_callback"
       DOCKER_PREFIX: "nomad-oasis-north"
       DOCKER_NETWORK: "nomad_oasis_network"
     env_file:
