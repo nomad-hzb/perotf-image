@@ -257,7 +257,7 @@ Please see the [Jupyter image](#the-jupyter-image) section below for more inform
 ### For an existing Oasis
 
 If you already have an Oasis running you only need to change the image in
-`docker-compose.yaml` (either by setting `APP_IMAGE` in your `.env` or updating `x-images.nomad` in `docker-compose.yaml`) with `ghcr.io/nomad-hzb/perotf-image:main`.
+`docker-compose.yaml` (either by setting `APP_IMAGE` in your `.env` or updating `x-images.nomad` in `docker-compose.yaml`) with `ghcr.io/nomad-hzb/perotf-image_test:main`.
 
 If you want to use the `nomad.yaml` from this repository you also need to comment out
 the inclusion of the `nomad.yaml` under the volumes key of `x-nomad-base` in
@@ -430,7 +430,7 @@ Note that the `base-notebook` image is more lightweight and uses less disk space
 The image is quite large and might cause a timeout the first time it is run. In order to avoid this you can pre pull the image with:
 
 ```sh
-docker pull ghcr.io/nomad-hzb/perotf-image/jupyter:main
+docker pull ghcr.io/nomad-hzb/perotf-image_test/jupyter:main
 ```
 
 If you want additional python packages to be available to all users in the jupyter hub you can add those to the jupyter table in the [`pyproject.toml`](pyproject.toml):
