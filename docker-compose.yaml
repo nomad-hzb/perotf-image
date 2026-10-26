@@ -16,7 +16,9 @@ x-images:
 # Common environment variables shared across NOMAD app and internal/cpu/gpu workers
 x-nomad-environment: &nomad-environment
   NOMAD_ELASTIC_HOST: ${NOMAD_ELASTIC_HOST:-elastic}
-  NOMAD_ELASTIC_VERSION: ${NOMAD_ELASTIC_VERSION:-9}
+  # Still on Elasticsearch 7; switch to 9 together with the elastic service below
+  # (see https://docs.nomad-lab.eu/howto/oasis/migrate/v2.0.html)
+  NOMAD_ELASTIC_VERSION: ${NOMAD_ELASTIC_VERSION:-7}
   NOMAD_MONGO_HOST: ${NOMAD_MONGO_HOST:-mongo}
   NOMAD_TEMPORAL_HOST: ${NOMAD_TEMPORAL_HOST:-temporal}
 
@@ -73,14 +75,16 @@ x-temporal-admin: &temporal-admin
 
 services:
   # the search engine
+  # Kept on Elasticsearch 7 with the existing volume until the ES9 migration is done.
+  # For ES9: image 9.5.0, container/volume name nomad_oasis_elastic_9,
+  # add xpack.security.enabled=false and set NOMAD_ELASTIC_VERSION to 9.
   elastic:
     restart: unless-stopped
-    image: docker.elastic.co/elasticsearch/elasticsearch:9.5.0
-    container_name: nomad_oasis_elastic_9
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.28
+    container_name: nomad_oasis_elastic
     environment:
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
       - discovery.type=single-node
-      - xpack.security.enabled=false
     volumes:
       - elastic:/usr/share/elasticsearch/data
     healthcheck:
@@ -338,7 +342,7 @@ volumes:
   mongo:
     name: "nomad_oasis_mongo"
   elastic:
-    name: "nomad_oasis_elastic_9"
+    name: "nomad_oasis_elastic"
   keycloak:
     name: "nomad_oasis_keycloak"
   postgresql:
