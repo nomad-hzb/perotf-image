@@ -12,7 +12,7 @@ plugins:
     options:
       nomad_north_jupyter.north_tools:jupyter:
         north_tool:
-          image: ghcr.io/fairmat-nfdi/nomad-north-jupyter:latest
+          image: ghcr.io/nomad-hzb/perotf-image_test/jupyter:main
 
 meta:
   deployment: "oasis"
