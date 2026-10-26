@@ -27,6 +27,8 @@ north:
         short_description: A jupyter webapp container with voila opens notebook
         description: A jupyter hub webapp container with voila installed.
         image: ghcr.io/nomad-hzb/perotf-image_test/jupyter:main
+        # required by the v2 NORTH hub (start page when no file is opened)
+        default_url: /lab
         path_prefix: lab/tree
         with_path: true
         mount_path: /home/jovyan
@@ -39,6 +41,8 @@ north:
         short_description: A jupyter webapp container with voila opens voila
         description: A jupyter hub webapp container with voila installed.
         image: ghcr.io/nomad-hzb/perotf-image_test/jupyter:main
+        # required by the v2 NORTH hub (start page when no file is opened)
+        default_url: /voila/tree
         path_prefix: voila/render
         with_path: true
         mount_path: /home/jovyan
