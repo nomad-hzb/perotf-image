@@ -1,35 +1,200 @@
 services:
-  api_host: "localhost"
-  api_port: 80
-  api_base_path: "/backend"
+  api_host: 'elnserver'
+  # NOMAD v2: the backend (API, NORTH, ...) lives under /backend, the GUI under /.
+  # nginx redirects the old /nomad-oasis/... URLs.
+  api_base_path: '/backend'
+  upload_limit: 10000
+  admin_user_id: '7d1eef08-08e0-4461-934b-c0384474c535'
+  upload_members_group_search_enabled: true
+  # api_secret is set via NOMAD_SERVICES_API_SECRET in .env
 
 oasis:
   is_oasis: true
   uses_central_user_management: true
 
-plugins:
-  entry_points:
+north:
+  # jupyterhub_crypt_key is set via NOMAD_NORTH_JUPYTERHUB_CRYPT_KEY in .env
+  enabled: true
+  # NOMAD v2: NORTH runs in its own container (ghcr.io/fairmat-nfdi/nomad-north)
+  enable_new_hub_api: true
+
+  tools:
+    include:
+      - voila
+      - jupyter2
     options:
-      nomad_north_jupyter.north_tools:jupyter:
-        north_tool:
-          image: ghcr.io/nomad-hzb/perotf-image_test/jupyter:main
+      jupyter2:
+        short_description: A jupyter webapp container with voila opens notebook
+        description: A jupyter hub webapp container with voila installed.
+        image: ghcr.io/nomad-hzb/perotf-image_test/jupyter:main
+        path_prefix: lab/tree
+        with_path: true
+        mount_path: /home/jovyan
+        file_extensions:
+          - ipynb
+        maintainer:
+          - name: Felix Laufer
+            email: felix.laufer@kit.edu
+      voila:
+        short_description: A jupyter webapp container with voila opens voila
+        description: A jupyter hub webapp container with voila installed.
+        image: ghcr.io/nomad-hzb/perotf-image_test/jupyter:main
+        path_prefix: voila/render
+        with_path: true
+        mount_path: /home/jovyan
+        file_extensions:
+          - ipynb
+        maintainer:
+          - name: Felix Laufer
+            email: felix.laufer@kit.edu
 
 meta:
-  deployment: "oasis"
-  maintainer_email: "me@my-oasis.org"
+  deployment: 'KIT nomad oasis'
+  deployment_url: 'http://elnserver/backend/api/v1/'
+  maintainer_email: 'felix.laufer@kit.edu'
 
 logstash:
   enabled: false
 
-temporal:
-  enabled: true
-
 mongo:
-  db_name: nomad_oasis_v1
+    db_name: nomad_oasis_v1
 
 elastic:
-  entries_index: nomad_oasis_entries_v1
+    # Still Elasticsearch 7, the ES9 migration is a separate step.
+    version: 7
+    entries_index: nomad_oasis_entries_v1
+    # materials_index was removed in NOMAD v2
 
-north:
-  enabled: true
-  enable_new_hub_api: true
+ui:
+  theme:
+    title: "KIT nomad oasis"
+  unit_systems:
+    selected: "SI"
+  # NOMAD v2: `ui.apps` no longer exists. Apps are configured as entry points
+  # below (plugins.entry_points), the former 'eln' app is now 'kit_eln'.
+
+plugins:
+  entry_points:
+    # Only these entry points are loaded. In NOMAD v2 the built-in apps are
+    # entry points too, so the former ui.apps include list ('eln', 'solarcells',
+    # 'entries') is now part of this list.
+    include: [
+      "nomad_perotf.schema_packages:perotf_package",
+      "nomad_perotf.parsers:perotf_parser",
+      "nomad_perotf.parsers:perotf_experiment_parser",
+      "nomad_perotf.apps:perotf_voila_app",
+      "nomad_perotf.apps:solar_cell_overview_entry_point",
+      "apps/1_all/1_entries",
+      "kit_eln",
+      "perovskite_solar_cell_database.apps:solar_cells",
+      ]
+    options:
+      kit_eln:
+        entry_point_type: app
+        app:
+          label: 'KIT ELN'
+          path: 'eln'
+          resource: 'entries'
+          category: 'Experiment'
+          description: 'Search your experimental data'
+          readme: 'This page allows you to search **experiments** within the HZB-NOMAD.'
+          columns:
+            - search_quantity: 'results.eln.methods'
+              title: 'Methods'
+              align: 'left'
+              selected: true
+            - search_quantity: 'entry_create_time'
+              title: 'Entry time'
+              align: 'left'
+              selected: true
+            - search_quantity: 'entry_type'
+              title: 'Entry type'
+              align: 'left'
+              selected: true
+            - search_quantity: 'authors'
+              title: 'Authors'
+              align: 'left'
+              selected: true
+            - search_quantity: 'entry_name'
+              title: 'Name'
+              align: 'left'
+            - search_quantity: 'results.material.chemical_formula_hill'
+              title: 'Formula'
+              align: 'left'
+            - search_quantity: 'upload_name'
+              title: 'Upload name'
+              align: 'left'
+            - search_quantity: 'upload_id'
+              title: 'Upload id'
+              align: 'left'
+            - search_quantity: 'upload_create_time'
+              title: 'Upload time'
+              align: 'left'
+          rows:
+            actions:
+              enabled: true
+            details:
+              enabled: true
+            selection:
+              enabled: true
+          filter_menus:
+            options:
+              material:
+                label: 'Material'
+                level: 0
+              elements:
+                label: 'Elements / Formula'
+                level: 1
+                size: 'xl'
+              eln:
+                label: 'Electronic Lab Notebook'
+                level: 0
+              custom_quantities:
+                label: 'User Defined Quantities'
+                level: 0
+                size: 'l'
+              author:
+                label: 'Author / Origin / Dataset'
+                level: 0
+                size: 'm'
+              metadata:
+                label: 'Visibility / IDs / Schema'
+                level: 0
+              optimade:
+                label: 'Optimade'
+                level: 0
+                size: 'm'
+          filters_locked:
+            quantities: 'data'
+          dashboard:
+            widgets:
+              - type: 'terms'
+                show_input: true
+                scale: 'linear'
+                search_quantity: 'authors.name'
+                layout:
+                  xxl: {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 0}
+                  xl:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 0}
+                  lg:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 0}
+                  md:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 0}
+                  sm:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 0}
+              - type: 'terms'
+                show_input: true
+                scale: 'linear'
+                search_quantity: 'results.eln.methods'
+                layout:
+                  xxl: {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 6}
+                  xl:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 0}
+                  lg:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 6}
+                  md:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 6}
+                  sm:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 6}
+              - type: 'terms'
+                show_input: true
+                scale: 'linear'
+                search_quantity: 'results.eln.lab_ids'
+                layout:
+                  xxl: {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 12}
+                  xl:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 12}
+                  lg:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 12}
+                  md:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 12}
+                  sm:  {minH: 3, minW: 3, h: 6, w: 6, y: 0, x: 12}
