@@ -1,5 +1,5 @@
 services:
-  api_host: 'elnserver'
+  api_host: 'elnserver.lti.kit.edu'
   # NOMAD v2: the backend (API, NORTH, ...) lives under /backend, the GUI under /.
   # nginx redirects the old /nomad-oasis/... URLs.
   api_base_path: '/backend'
@@ -50,7 +50,7 @@ north:
 
 meta:
   deployment: 'KIT nomad oasis'
-  deployment_url: 'http://elnserver/backend/api/v1/'
+  deployment_url: 'http://elnserver.lti.kit.edu/backend/api/v1/'
   maintainer_email: 'felix.laufer@kit.edu'
 
 logstash:
