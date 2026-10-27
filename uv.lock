@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.15' and sys_platform == 'win32'",
@@ -4639,7 +4639,7 @@ dependencies = [
 
 [[package]]
 name = "nomad-gui"
-version = "2.0.0"
+version = "2.0.1"
 source = { registry = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple" }
 dependencies = [
     { name = "click" },
@@ -4650,14 +4650,14 @@ dependencies = [
     { name = "plotly" },
     { name = "starlette" },
 ]
-sdist = { url = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/files/2afa393264183792830fb9c2bd96b0bc9d796e43be6b09d3e571d7e983cd5887/nomad_gui-2.0.0.tar.gz", hash = "sha256:2afa393264183792830fb9c2bd96b0bc9d796e43be6b09d3e571d7e983cd5887" }
+sdist = { url = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/files/3f269ce914e0e1198fb42c5850e997d929ac505bd696637453bc982372268734/nomad_gui-2.0.1.tar.gz", hash = "sha256:3f269ce914e0e1198fb42c5850e997d929ac505bd696637453bc982372268734" }
 wheels = [
-    { url = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/files/85cbc5eb7e0eb0f51d9f2b5874b0157eaa3344dc65c83bc27b2bee861d1a5508/nomad_gui-2.0.0-py3-none-any.whl", hash = "sha256:85cbc5eb7e0eb0f51d9f2b5874b0157eaa3344dc65c83bc27b2bee861d1a5508" },
+    { url = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/files/c1bd3c935ce078788ef327b04e2fab85f2449738c0c5293238e863631dc7dd54/nomad_gui-2.0.1-py3-none-any.whl", hash = "sha256:c1bd3c935ce078788ef327b04e2fab85f2449738c0c5293238e863631dc7dd54" },
 ]
 
 [[package]]
 name = "nomad-lab"
-version = "2.0.0"
+version = "2.0.1"
 source = { registry = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple" }
 dependencies = [
     { name = "ase" },
@@ -4703,9 +4703,9 @@ dependencies = [
     { name = "unidecode" },
     { name = "xarray" },
 ]
-sdist = { url = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/files/d61c08bac59f614d31db63c5a537a23e7e30b081d30ed822501b09809eae844e/nomad_lab-2.0.0.tar.gz", hash = "sha256:d61c08bac59f614d31db63c5a537a23e7e30b081d30ed822501b09809eae844e" }
+sdist = { url = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/files/b7aa9a59072ac528c08052629f3614f8f2fcd1fec6a585ac634b0181c1bf1c75/nomad_lab-2.0.1.tar.gz", hash = "sha256:b7aa9a59072ac528c08052629f3614f8f2fcd1fec6a585ac634b0181c1bf1c75" }
 wheels = [
-    { url = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/files/ae63264bd7714b175bbaca3569319dd98416c75fb95735e6a4b67bc83964a48e/nomad_lab-2.0.0-py3-none-any.whl", hash = "sha256:ae63264bd7714b175bbaca3569319dd98416c75fb95735e6a4b67bc83964a48e" },
+    { url = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/files/d09361ad7b2d0167f9b9487e08626429373867c80fd69584a301dcb6ddb283fb/nomad_lab-2.0.1-py3-none-any.whl", hash = "sha256:d09361ad7b2d0167f9b9487e08626429373867c80fd69584a301dcb6ddb283fb" },
 ]
 
 [package.optional-dependencies]
@@ -5669,9 +5669,9 @@ requires-dist = [
     { name = "jupyterlab", marker = "extra == 'jupyter'", specifier = ">4.0" },
     { name = "lmfit", marker = "extra == 'jupyter'", specifier = ">=1.3" },
     { name = "nomad-baseclasses", marker = "extra == 'plugins'", git = "https://github.com/nomad-hzb/nomad-baseclasses.git" },
-    { name = "nomad-gui", marker = "extra == 'plugins'", specifier = "==2.0.0" },
-    { name = "nomad-lab", extras = ["parsing", "infrastructure"], specifier = "==2.0.0" },
-    { name = "nomad-lab", extras = ["parsing", "infrastructure", "dev"], marker = "extra == 'dev'", specifier = "==2.0.0" },
+    { name = "nomad-gui", marker = "extra == 'plugins'", specifier = "==2.0.1" },
+    { name = "nomad-lab", extras = ["parsing", "infrastructure"], specifier = "==2.0.1" },
+    { name = "nomad-lab", extras = ["parsing", "infrastructure", "dev"], marker = "extra == 'dev'", specifier = "==2.0.1" },
     { name = "nomad-luqy-plugin", marker = "extra == 'plugins'", git = "https://github.com/Pepe-Marquez/nomad-luqy-plugin.git" },
     { name = "nomad-perotf", marker = "extra == 'plugins'", git = "https://github.com/nomad-hzb/nomad-perotf.git" },
     { name = "numexpr", marker = "extra == 'jupyter'", specifier = ">=2.8.4" },
@@ -5703,7 +5703,7 @@ name = "pexpect"
 version = "4.9.0"
 source = { registry = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple" }
 dependencies = [
-    { name = "ptyprocess" },
+    { name = "ptyprocess", marker = "sys_platform != 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [
