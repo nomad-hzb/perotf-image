@@ -10,19 +10,22 @@
 # Set IMAGE_TAG (e.g. IMAGE_TAG=pr-15) to run images built for a pull request.
 #
 # Unchanged on purpose, these are separate migration steps:
-#   - Elasticsearch 7 (ES9 migration: https://docs.nomad-lab.eu/howto/oasis/migrate/v2.0.html)
 #   - MongoDB 5 (MongoDB major upgrades must go 5 -> 6 -> 7 -> 8)
 #   - Temporal auto-setup 1.28
 
 services:
   # the search engine
+  # Elasticsearch 9 with a fresh volume, filled by `nomad admin uploads index`
+  # (https://docs.nomad-lab.eu/howto/oasis/migrate/v2.0.html, option 2). The old ES7
+  # volume nomad_oasis_elastic is no longer used and can be deleted once all is fine.
   elastic:
     restart: unless-stopped
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.28
-    container_name: nomad_oasis_elastic
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.5.0
+    container_name: nomad_oasis_elastic_9
     environment:
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
       - discovery.type=single-node
+      - xpack.security.enabled=false
     volumes:
       - elastic:/usr/share/elasticsearch/data
     healthcheck:
@@ -256,7 +259,7 @@ volumes:
   mongo:
     name: "nomad_oasis_mongo"
   elastic:
-    name: "nomad_oasis_elastic"
+    name: "nomad_oasis_elastic_9"
   postgresql:
     name: "nomad_oasis_postgresql"
   nomad_north:
