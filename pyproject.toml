@@ -18,7 +18,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { file = "LICENSE" }
 dependencies = [
-    "nomad-lab[parsing, infrastructure]==2.0.0",
+    "nomad-lab[parsing, infrastructure]==2.0.1",
 ]
 
 
@@ -28,7 +28,7 @@ plugins = [
   'nomad-baseclasses @ git+https://github.com/nomad-hzb/nomad-baseclasses.git',
   'nomad-luqy-plugin @ git+https://github.com/Pepe-Marquez/nomad-luqy-plugin.git',
   'nomad-perotf @ git+https://github.com/nomad-hzb/nomad-perotf.git',
-  "nomad-gui==2.0.0",
+  "nomad-gui==2.0.1",
 ]
   
 jupyter = [
@@ -50,7 +50,7 @@ jupyter = [
 gpu-action = []
 cpu-action = []
 
-dev = ["nomad-lab[parsing, infrastructure, dev]==2.0.0"]
+dev = ["nomad-lab[parsing, infrastructure, dev]==2.0.1"]
 
 [tool.uv]
 extra-index-url = [
