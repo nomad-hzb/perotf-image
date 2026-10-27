@@ -185,11 +185,14 @@ services:
       start_period: 10s
 
   # nomad remote tools hub (JupyterHub)
+  # Before changing the image tag: see the TODO in configs/north_jupyterhub_config.py
   north:
     restart: unless-stopped
     image: ghcr.io/fairmat-nfdi/nomad-north:v2.0.0rc1
     platform: linux/amd64
     container_name: nomad_oasis_north
+    # KIT workaround: passes NOMAD_CLIENT_* to tool containers (nomad-north issue #10)
+    command: ["jupyterhub", "-f", "/srv/jupyterhub/jupyterhub_config_kit.py"]
     environment:
       NOMAD_API_URL: "http://app:8000/backend/api/v1"
       BASE_URL: "/backend/north/"
@@ -203,6 +206,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:rw"
       # JupyterHub database and cookie secret
       - "nomad_north:/data"
+      - ./configs/north_jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config_kit.py:ro
     healthcheck:
       test:
         - "CMD"
