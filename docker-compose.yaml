@@ -9,8 +9,7 @@
 #
 # Set IMAGE_TAG (e.g. IMAGE_TAG=pr-15) to run images built for a pull request.
 #
-# Unchanged on purpose, these are separate migration steps:
-#   - MongoDB 5 (MongoDB major upgrades must go 5 -> 6 -> 7 -> 8)
+# Unchanged on purpose:
 #   - Temporal auto-setup 1.28
 
 services:
@@ -43,7 +42,7 @@ services:
   # the user data db
   mongo:
     restart: unless-stopped
-    image: mongo:5.0.6
+    image: mongo:8.0
     container_name: nomad_oasis_mongo
     environment:
       - MONGO_DATA_DIR=/data/db
@@ -55,7 +54,7 @@ services:
     healthcheck:
       test:
         - "CMD"
-        - "mongo"
+        - "mongosh"
         - "mongo:27017/test"
         - "--quiet"
         - "--eval"
