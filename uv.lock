@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.15' and sys_platform == 'win32'",
@@ -4620,7 +4620,7 @@ wheels = [
 [[package]]
 name = "nomad-baseclasses"
 version = "1.0.1"
-source = { git = "https://github.com/nomad-hzb/nomad-baseclasses.git#56f65f583a6cd0a5d2010f0bdfb78fa12b358d89" }
+source = { git = "https://github.com/nomad-hzb/nomad-baseclasses.git#66740bafed0b2857ae50f122dd6e2999d29d3bd1" }
 dependencies = [
     { name = "chardet" },
     { name = "hdf5plugin" },
@@ -4789,7 +4789,7 @@ wheels = [
 [[package]]
 name = "nomad-perotf"
 version = "1.0.0"
-source = { git = "https://github.com/nomad-hzb/nomad-perotf.git#226b67a856e8a78c69d84d530c804bf0e53d4b10" }
+source = { git = "https://github.com/nomad-hzb/nomad-perotf.git#7856a6b25225750ccf1895ac8b98763f61fe1505" }
 dependencies = [
     { name = "nomad-baseclasses" },
     { name = "nomad-lab" },
